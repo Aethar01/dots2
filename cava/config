@@ -1,0 +1,10 @@
+gradient = 1
+gradient_count = 3
+gradient_color_1 = '#273d52'
+gradient_color_2 = '#436082'
+gradient_color_3 = '#496b87'
+
+monstercat = 1
+waves = 1
+
+ignore = 10

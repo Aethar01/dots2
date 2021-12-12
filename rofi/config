@@ -1,0 +1,3 @@
+rofi.font: Iosevka\ 10
+rofi.show-icons: True
+rofi.theme: ./gruvbox-dark.rasi
