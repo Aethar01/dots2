@@ -1,30 +1,64 @@
 #! /bin/sh
 
-pgrep -x sxhkd > /dev/null || sxhkd &
+################################################################
+## DISPLAY
+#max xrandr --output DP-4 --mode 1920x1080 --rate 143.98 --rotate left --scale 1.3333x1.3333 &
+xrandr --output DP-4 --primary --mode 3440x1440 --rate 165.00 & # --left-of DP-4 &
 
+################################################################
+## AUTOSTART APPS
+pgrep -x sxhkd > /dev/null || sxhkd &
+# pkill eww ; /usr/bin/eww open bar &
+picom --config $HOME/.config/picom/picom.conf & 
+~/.config/polybar/launch.sh &
+dunst & 
+pgrep -x uim-xim > /dev/null || uim-xim &
+easyeffects --gapplication-service &
+python3 $HOME/.config/xob/pulseAudioWatcher.py | xob &
+# pkill eww_fullscreen_fix.sh ; $HOME/.config/bspwm/scripts/eww_fullscreen_fix.sh &
+
+#################################################################
+## BSPWM CONFIG
 bspc monitor DP-4 -d  1 2 3 4 5 6 7 8 9 10
+# bspc monitor DP-4 -d  11 12
 
 bspc config border_width         0
 bspc config window_gap          20 #12
+# bspc config border_radius       15   #15
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 bspc config top_padding  20
-bspc config pointer_motion_interval 40
 bspc config top_monocle_padding -20
 bspc config pointer_motion_interval 6
 
-~/.config/polybar/launch.sh &
+# bspc rule -a Gimp desktop='^8' state=floating follow=on
+# bspc rule -a Chromium desktop='^2'
+# bspc rule -a mplayer2 state=floating
+# bspc rule -a Kupfer.py focus=on
+# bspc rule -a Screenkey manage=off
 
-xrandr --output DP-4 --primary --mode 3440x1440 --rate 165.00
-feh --bg-fill ~/images/wallpapers/nekotokanojo.jpg
+bspc rule -a discord desktop=3 follow=off
+bspc rule -a Steam desktop=4 follow=off
+bspc rule -a spotify desktop=2 follow=off
+bspc rule -a google-chrome private=on
+bspc rule -a easyeffects state=floating sticky=on
 
-picom --config ~/.config/picom/picom.conf & 
+# xsetroot -cursor_name left_ptr 16
 
-dunst & 
+#xrandr --output DP-2 --primary --mode 1920x1080 --rate 144.00
+#xrandr --output HDMI-0 --mode 1680x1050 --rate 60.00 --left-of DP-2
+#xrandr --output DP-4 --mode 1680x1050 --rate 60.00 --right-of DP-2
 
-# uim-xim &
-# uim-toolbar-gtk3 &
+###############################################################
+## BACKGROUND
+#feh --bg-fill ~/images/wallpaperflare-cropped
+#feh --bg-fill ~/images/power.png
+#feh --bg-fill ~/images/wallpapers/nekotokanojo.jpg &
+feh --bg-fill ~/images/guweiz/z-w-gu-bandageb5f1.jpg &
 
-python3 ~/.config/xob/pulseAudioWatcher.py | xob &
+###############################################################
+## INPUT SETTINGS
+xset r rate 500 50 &
+xinput set-prop 'SteelSeries SteelSeries Rival 310 eSports Mouse' 'libinput Accel Speed' -0.5
