@@ -19,6 +19,9 @@ return require('packer').startup(function(use)
       use('mbbill/undotree')
       use('tpope/vim-fugitive')
       use('github/copilot.vim')
+      use('tpope/vim-surround')
+      use('tpope/vim-commentary')
+      use('lervag/vimtex')
 
       use {
 	      'VonHeikemen/lsp-zero.nvim',

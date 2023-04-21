@@ -31,3 +31,15 @@ vim.opt.updatetime = 50
 vim.opt. colorcolumn = "80"
 
 vim.g.mapleader = " "
+
+vim.g.moonflyTransparent = true
+vim.g.moonflyTerminalColors = true
+vim.g.moonflyWinSeparator = 2
+
+vim.g.vimtex_view_method = "zathura"
+vim.g.vimtex_view_general_viewer = "zathura"
+vim.g.vimtex_view_general_options = "--unique file:@pdf\\#src:@line@tex"
+vim.g.vimtex_compiler_method = "latexmk"
+vim.g.maplocalleader = ","
+
+vim.g.netrw_banner = 0
