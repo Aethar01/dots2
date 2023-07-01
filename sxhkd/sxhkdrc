@@ -5,6 +5,7 @@
 # terminal emulator
 super + Return
 	kitty
+
 # chrome
 super + alt + f
 	google-chrome-stable
@@ -94,10 +95,9 @@ super + {o,i}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
-# set floating and send to side
-super + ctrl + b
-    bspc node -t floating; \
-    xdo move -x 3300 -y 100
+# bspad
+super + {ctrl + ,_,shift +,ctrl + shift + }e
+    bspad {hide, toggle, cycle, unmark}
 
 #
 # preselect
@@ -139,6 +139,11 @@ super + {Left,Down,Up,Right}
 super + n
 	bspc node -R 90
 
+# border colors
+super + alt + 1
+    bspc config {border_width 1, border_width 0}
+    bspc config {window_gap 19, window_gap 20}
+
 # take screenshots
 super + alt + Scroll_Lock
 	scrot -m -s ~/images/scrots/%Y-%m-%d-%T-screenshot.png -e 'xclip -selection clipboard -target image/png -i $f'
@@ -148,13 +153,13 @@ super + Scroll_Lock
 
 # volume control
 XF86AudioLowerVolume
-	pactl -- set-sink-volume "alsa_output.usb-Focusrite_Scarlett_2i2_USB_Y88AEP6930338E-00.analog-stereo" -10%
+	pactl -- set-sink-volume "alsa_output.usb-Focusrite_Scarlett_2i2_USB_Y88AEP6930338E-00.HiFi__scarlett2i_stereo_out_USB_0_0_1__sink" -10%
 
 XF86AudioRaiseVolume
-	pactl -- set-sink-volume "alsa_output.usb-Focusrite_Scarlett_2i2_USB_Y88AEP6930338E-00.analog-stereo" +10%
+	pactl -- set-sink-volume "alsa_output.usb-Focusrite_Scarlett_2i2_USB_Y88AEP6930338E-00.HiFi__scarlett2i_stereo_out_USB_0_0_1__sink" +10%
 
 XF86AudioMute
-	pactl -- set-sink-mute "alsa_output.usb-Focusrite_Scarlett_2i2_USB_Y88AEP6930338E-00.analog-stereo" toggle
+	pactl -- set-sink-mute "alsa_output.usb-Focusrite_Scarlett_2i2_USB_Y88AEP6930338E-00.HiFi__scarlett2i_stereo_out_USB_0_0_1__sink" toggle
 
 # calculator button idk
 XF86Calculator
@@ -182,3 +187,12 @@ ctrl + bracketright
 # workman
 ctrl + alt + equal
     setxkbmap {-variant workman, -layout us}
+
+# lock
+super + Print
+    lock
+
+# PBP mode
+super + alt + p
+    ~/.config/scripts/pbp.sh
+

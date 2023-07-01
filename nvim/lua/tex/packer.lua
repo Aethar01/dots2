@@ -22,6 +22,9 @@ return require('packer').startup(function(use)
       use('tpope/vim-surround')
       use('tpope/vim-commentary')
       use('lervag/vimtex')
+      use('iamcco/markdown-preview.nvim')
+      use('m4xshen/autoclose.nvim')
+      use('nvim-treesitter/nvim-treesitter-context')
 
       use {
 	      'VonHeikemen/lsp-zero.nvim',
